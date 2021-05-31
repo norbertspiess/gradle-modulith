@@ -1,0 +1,62 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'de.nspiess'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '12'
+
+ext {
+    springBootVersion = '2.5.0' // keep in sync with boot plugin
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project('modules:a:a-impl')
+    implementation project('modules:b:b-impl')
+    implementation project('modules:c:c-impl')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2:1.4.200'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+subprojects {
+    group = rootProject.group
+    version = rootProject.version
+
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        }
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
