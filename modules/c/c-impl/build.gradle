@@ -1,1 +1,3 @@
-dependencies {}
+dependencies {
+    implementation project(':modules:c:c-api')
+}

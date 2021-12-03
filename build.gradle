@@ -1,15 +1,15 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.0'
+    id 'org.springframework.boot' version '2.5.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
 group = 'de.nspiess'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '12'
+sourceCompatibility = '17'
 
 ext {
-    springBootVersion = '2.5.0' // keep in sync with boot plugin
+    springBootVersion = '2.5.6' // keep in sync with boot plugin
 }
 
 repositories {
@@ -33,6 +33,7 @@ test {
 }
 
 subprojects {
+    // this sets the group and version the same as the root
     group = rootProject.group
     version = rootProject.version
 
@@ -45,10 +46,12 @@ subprojects {
 
     dependencyManagement {
         imports {
+            // use the same spring boot version as in the root
             mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
         }
     }
 
+    // define dependencies every module will inherit
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
 
