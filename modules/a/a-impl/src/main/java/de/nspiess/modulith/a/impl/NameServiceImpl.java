@@ -10,4 +10,5 @@ public class NameServiceImpl implements NameService {
   public String getName() {
     return Math.random() > 0.5 ? "World" : "Space";
   }
+
 }

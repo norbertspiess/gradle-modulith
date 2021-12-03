@@ -12,7 +12,7 @@ public class HelloListener {
 
   private static final Logger log = LoggerFactory.getLogger(HelloListener.class);
 
-  //@Async if events should get handled in a different thread. Enabled via @EnableAsync on the Application
+  // asynchronous event handling in a different thread. Enabled via @EnableAsync on the Application
   @Async
   @EventListener
   public void helloEvent(HelloEvent event) {

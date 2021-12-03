@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
-public class WebController {
+@RequestMapping("/hello")
+public class GreetController {
 
-  public WebController(NameService nameService, ApplicationEventPublisher eventPublisher) {
+  public GreetController(NameService nameService, ApplicationEventPublisher eventPublisher) {
     this.nameService = nameService;
     this.eventPublisher = eventPublisher;
   }
@@ -19,7 +19,7 @@ public class WebController {
   private final NameService nameService;
   private final ApplicationEventPublisher eventPublisher;
 
-  @GetMapping("/hello")
+  @GetMapping
   public String hello() {
     var greeted = nameService.getName();
 
